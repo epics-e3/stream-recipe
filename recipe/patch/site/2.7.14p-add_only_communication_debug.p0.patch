@@ -1,0 +1,78 @@
+diff --git src/StreamCore.cc src/StreamCore.cc
+index ffe9a29..f64f0ff 100644
+--- src/StreamCore.cc
++++ src/StreamCore.cc
+@@ -832,7 +832,7 @@ lockCallback(StreamIoStatus status)
+         case StreamIoSuccess:
+             break;
+         case StreamIoTimeout:
+-            debug("%s: Cannot lock device within %ld ms, device seems to be busy\n",
++            comm_debug("%s: Cannot lock device within %ld ms, device seems to be busy\n",
+                 name(), lockTimeout);
+             flags &= ~BusOwner;
+             finishProtocol(LockTimeout);
+@@ -991,7 +991,7 @@ readCallback(StreamIoStatus status,
+                 evalIn();
+                 return 0;
+             }
+-            debug("StreamCore::readCallback(%s): No reply from device within %ld ms\n",
++            comm_debug("StreamCore::readCallback(%s): No reply from device within %ld ms\n",
+                 name(), replyTimeout);
+             inputBuffer.clear();
+             finishProtocol(ReplyTimeout);
+diff --git src/StreamEpics.cc src/StreamEpics.cc
+index a9228be..953f9e1 100644
+--- src/StreamEpics.cc
++++ src/StreamEpics.cc
+@@ -181,6 +181,7 @@ public:
+ extern "C" {
+ epicsExportAddress(int, streamDebug);
+ epicsExportAddress(int, streamError);
++epicsExportAddress(int, streamCommunicationDebug);
+ }
+ #endif
+ 
+diff --git src/StreamError.cc src/StreamError.cc
+index 5ba0832..cfec7fa 100644
+--- src/StreamError.cc
++++ src/StreamError.cc
+@@ -24,6 +24,7 @@
+ 
+ int streamDebug = 0;
+ int streamError = 1;
++int streamCommunicationDebug = 0;
+ extern "C" {
+ #ifdef _WIN32
+ __declspec(dllexport)
+diff --git src/StreamError.h src/StreamError.h
+index be39323..d7dc1b8 100644
+--- src/StreamError.h
++++ src/StreamError.h
+@@ -29,6 +29,7 @@
+ 
+ extern int streamDebug;
+ extern int streamError;
++extern int streamCommunicationDebug;
+ extern void (*StreamPrintTimestampFunction)(char* buffer, int size);
+ 
+ void StreamError(int line, const char* file, const char* fmt, ...)
+@@ -62,6 +63,7 @@ StreamDebugObject(const char* file, int line)
+ 
+ #define error StreamError
+ #define debug (!streamDebug)?0:StreamDebugObject(__FILE__,__LINE__).print
++#define comm_debug (!streamCommunicationDebug)?0:StreamDebugObject(__FILE__,__LINE__).print
+ 
+ #if (__GNUC__ == 2 && __GNUC_MINOR__ == 7)
+ /* Bug in cygnus-2.7.2 compiler: temporary objects crash the compiler */
+diff --git src/makedbd.pl src/makedbd.pl
+index 97ba29e..603f3d6 100644
+--- src/makedbd.pl
++++ src/makedbd.pl
+@@ -3,6 +3,7 @@ if (@ARGV[0] == "-3.13") {
+ } else {
+     print "variable(streamDebug, int)\n";
+     print "variable(streamError, int)\n";
++    print "variable(streamCommunicationDebug, int)\n";
+     print "registrar(streamRegistrar)\n";
+ }
+ print "driver(stream)\n";

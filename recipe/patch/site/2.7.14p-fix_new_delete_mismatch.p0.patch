@@ -1,0 +1,13 @@
+diff --git src/StreamBuffer.h src/StreamBuffer.h
+index a016089..7dcddc1 100644
+--- src/StreamBuffer.h
++++ src/StreamBuffer.h
+@@ -72,7 +72,7 @@ public:
+         {init(NULL, size);}
+ 
+     ~StreamBuffer()
+-        {if (buffer != local) delete buffer;}
++        {if (buffer != local) delete [] buffer;}
+ 
+     // operator (): get char* pointing to index
+     const char* operator()(ssize_t index=0) const

@@ -1,0 +1,41 @@
+{% set version = "2.7.14" %}
+
+package:
+  name: streamdevice
+  version: "{{ version }}"
+
+source:
+  - url: https://github.com/paulscherrerinstitute/StreamDevice/archive/stream_2_7_14.tar.gz
+    sha256: 9f0f79567a0eae494e7bc1b81f1ec679eb176975f58d94de8f1d1ccdefc2e654
+    patches:
+      - patch/site/2.7.14p-add_only_communication_debug.p0.patch
+      - patch/site/2.7.14p-extend_char_length_to_256.p0.patch
+      - patch/site/2.7.14p-fix_new_delete_mismatch.p0.patch
+  - path: ../src
+
+build:
+  number: 0
+  run_exports:
+    - {{ pin_subpackage('streamdevice', max_pin='x.x.x') }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - epics-base
+    - require
+    - asyn
+    - calc
+    - pcre
+
+test:
+  requires:
+    - run-iocsh
+  commands:
+    - run-iocsh -r streamdevice
+
+about:
+  home: https://github.com/paulscherrerinstitute/StreamDevice
+  license: EPICS Open License
+  summary: "EPICS Driver for message based I/O"

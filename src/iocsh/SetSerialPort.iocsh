@@ -1,0 +1,34 @@
+#- #############################$######################
+#- ###         SetSerialPort iocsh                  ###
+#- ####################################################
+#- >> Mandatory
+#- PORT_NAME      - Serial Port Name
+#- TTY_NAME       - Serial TTY name
+#-
+#- >> Optional
+#- BAUD           - Baud Rate, Default=9600
+#- BITS           - Bit, Default=8  (8/7/6/5)
+#- STOP           - Stop, Default=1  (1/2)
+#- PARITY         - Parity, Default=nono (none/even/odd)
+#- CLOCAL         - Data Terminal Ready,Carrier Detect/Received Line Signal Detect, Default=Y
+#-                  Y : Ignored
+#-                  N : Used
+#- SRTSCTS        - hardware handshaking lines, Request To Send, Clear To Send, Default=N
+#-                  Y : Used
+#-                  N : Ignored
+#-
+#- ####################################################
+
+
+drvAsynSerialPortConfigure($(PORT_NAME),$(TTY_NAME),0,0,0)
+
+asynSetOption($(PORT_NAME), 0, "baud",    "$(BAUD=9600)")
+asynSetOption($(PORT_NAME), 0, "bits",    "$(BITS=8)")
+asynSetOption($(PORT_NAME), 0, "stop",    "$(STOP=1)")
+asynSetOption($(PORT_NAME), 0, "parity",  "$(PARITY=none)")
+asynSetOption($(PORT_NAME), 0, "clocal",  "$(CLOCAL=Y)")
+asynSetOption($(PORT_NAME), 0, "crtscts", "$(SRTSCTS=N)")
+
+
+
+
