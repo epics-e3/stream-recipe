@@ -1,5 +1,5 @@
 #
-#  Copyright (c) 2007            Paul Scherrer Institute 
+#  Copyright (c) 2007            Paul Scherrer Institute
 #  Copyright (c) 2017 - Present  European Spallation Source ERIC
 #  Copyright (c) 2019            Jeong Han Lee
 #
@@ -23,12 +23,11 @@
 #               date    : Thursday, March  7 22:27:55 CET 2019
 #               version : 0.0.3
 #
-#   
+#
 
 
 where_am_I := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 include $(E3_REQUIRE_TOOLS)/driver.makefile
-
 
 #USR_CPPFLAGS += -DUSE_TYPED_RSET
 
@@ -90,15 +89,15 @@ HEADERS += $(APPSRC)/StreamFormatConverter.h
 HEADERS += $(APPSRC)/StreamBuffer.h
 HEADERS += $(APPSRC)/StreamError.h
 
+LIB_LIBS += pcre
 
 SCRIPTS += $(wildcard ./iocsh/*.iocsh)
-
 
 StreamCore$(DEP): streamReferences
 
 # the original StreamDevice GNUMakefile uses perl
 # I would like to use EPICS PERL instead of perl
-# $PERL = perl -CSD 
+# $PERL = perl -CSD
 
 streamReferences:
 	$(PERL) $(where_am_I)$(APPSRC)/makeref.pl Interface $(BUSSES)   > $@
