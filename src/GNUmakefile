@@ -88,6 +88,9 @@ HEADERS += $(APPSRC)/StreamFormat.h
 HEADERS += $(APPSRC)/StreamFormatConverter.h
 HEADERS += $(APPSRC)/StreamBuffer.h
 HEADERS += $(APPSRC)/StreamError.h
+HEADERS += $(APPSRC)/StreamProtocol.h
+HEADERS += $(APPSRC)/StreamBusInterface.h
+HEADERS += $(APPSRC)/StreamCore.h
 
 LIB_LIBS += pcre
 
