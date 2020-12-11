@@ -1,4 +1,4 @@
-# StreamDevice conda recipe
+# Stream conda recipe
 
 Home: https://github.com/paulscherrerinstitute/StreamDevice
 
