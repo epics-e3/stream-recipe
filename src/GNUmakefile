@@ -100,6 +100,14 @@ SCRIPTS += $(wildcard ./iocsh/*.iocsh)
 
 StreamCore$(DEP): streamReferences
 
+# Follow E3 build pattern. These lines will pull Version info out of source
+prebuild: $(APPSRC)/StreamVersion.h
+
+$(APPSRC)/StreamVersion.h: $(APPSRC)/../.VERSION $(SOURCES) $(filter-out StreamVersion.h, $(HEADERS))
+	@echo Creating $@
+	perl -CSD $(APPSRC)/makeStreamVersion.pl $@
+
+
 # the original StreamDevice GNUMakefile uses perl
 # I would like to use EPICS PERL instead of perl
 # $PERL = perl -CSD
