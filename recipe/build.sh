@@ -6,7 +6,7 @@ LIBVERSION=$(echo ${PKG_VERSION}| cut -d'.' -f1-3)
 # Clean between variants builds
 make clean
 
+make MODULE=${PKG_NAME} LIBVERSION=${LIBVERSION} prebuild
 make MODULE=${PKG_NAME} LIBVERSION=${LIBVERSION}
 make MODULE=${PKG_NAME} LIBVERSION=${LIBVERSION} db
 make MODULE=${PKG_NAME} LIBVERSION=${LIBVERSION} install
-
