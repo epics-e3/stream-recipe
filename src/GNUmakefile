@@ -88,17 +88,11 @@ HEADERS += $(APPSRC)/StreamFormat.h
 HEADERS += $(APPSRC)/StreamFormatConverter.h
 HEADERS += $(APPSRC)/StreamBuffer.h
 HEADERS += $(APPSRC)/StreamError.h
+HEADERS += $(APPSRC)/StreamVersion.h
 HEADERS += $(APPSRC)/StreamProtocol.h
 HEADERS += $(APPSRC)/StreamBusInterface.h
 HEADERS += $(APPSRC)/StreamCore.h
 HEADERS += $(APPSRC)/MacroMagic.h
-
-prebuild: $(APPSRC)/StreamVersion.h
-
-$(APPSRC)/StreamVersion.h: $(APPSRC)/../.VERSION $(SOURCES) $(filter-out StreamVersion.h, $(HEADERS))
-	@echo Creating $@
-	perl -CSD $(APPSRC)/makeStreamVersion.pl $@
-
 
 LIB_LIBS += pcre
 

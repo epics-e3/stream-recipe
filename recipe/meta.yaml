@@ -5,11 +5,12 @@ package:
   version: "{{ version }}"
 
 source:
-  - url: https://github.com/paulscherrerinstitute/StreamDevice/archive/{{ version }}.tar.gz
+  - git_url: https://github.com/paulscherrerinstitute/StreamDevice.git
+    git_rev: {{version}}
   - path: ../src
 
 build:
-  number: 1
+  number: 0
   run_exports:
     - {{ pin_subpackage('stream', max_pin='x.x.x') }}
 

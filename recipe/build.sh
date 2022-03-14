@@ -3,10 +3,12 @@
 # LIBVERSION shall only include MAJOR.MINOR.PATCH for require
 LIBVERSION=$(echo ${PKG_VERSION}| cut -d'.' -f1-3)
 
+# Create streamVersion header file
+perl src/makeStreamVersion.pl src/StreamVersion.h
+
 # Clean between variants builds
 make clean
 
 make MODULE=${PKG_NAME} LIBVERSION=${LIBVERSION}
 make MODULE=${PKG_NAME} LIBVERSION=${LIBVERSION} db
 make MODULE=${PKG_NAME} LIBVERSION=${LIBVERSION} install
-
