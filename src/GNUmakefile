@@ -123,12 +123,6 @@ streamSup.dbd:
 	$(PERL) $(where_am_I)$(APPSRC)/makedbd.pl $(RECORDTYPES) > $@
 
 
-
-# db rule is the default in RULES_E3, so add the empty one
-
-db:
-#
-.PHONY: vlibs db
+.PHONY: vlibs
 
 vlibs:
-#
