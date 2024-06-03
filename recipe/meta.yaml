@@ -10,6 +10,7 @@ source:
   - path: ../src
 
 build:
+  skip: True  # [ppc64]
   number: 0
   run_exports:
     - {{ pin_subpackage('stream', max_pin='x.x.x') }}
@@ -21,10 +22,10 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
-    - epics-base 7.0.8
-    - require 5.1
-    - asyn 4.44.2
-    - calc 3.7.5
+    - epics-base
+    - require
+    - asyn
+    - calc
     - pcre
 
 test:
