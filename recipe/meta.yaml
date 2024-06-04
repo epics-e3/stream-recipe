@@ -1,4 +1,4 @@
-{% set version = "2.8.24" %}
+{% set version = "2.8.25" %}
 
 package:
   name: stream
@@ -10,6 +10,7 @@ source:
   - path: ../src
 
 build:
+  skip: True  # [ppc64]
   number: 0
   run_exports:
     - {{ pin_subpackage('stream', max_pin='x.x.x') }}
@@ -18,7 +19,6 @@ requirements:
   build:
     - make
     - perl
-    - tclx
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
