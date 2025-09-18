@@ -25,12 +25,7 @@
 #
 #
 
-
-where_am_I := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 include $(E3_REQUIRE_TOOLS)/driver.makefile
-
-#USR_CPPFLAGS += -DUSE_TYPED_RSET
-
 
 APP:=.
 APPDB:=$(APP)/Db
@@ -121,8 +116,3 @@ export DBDFILES = streamSup.dbd
 streamSup.dbd:
 	@echo Creating $@
 	$(PERL) $(where_am_I)$(APPSRC)/makedbd.pl $(RECORDTYPES) > $@
-
-
-.PHONY: vlibs
-
-vlibs:

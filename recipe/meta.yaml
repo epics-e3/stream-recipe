@@ -10,17 +10,17 @@ source:
   - path: ../src
 
 build:
-  skip: True  # [ppc64]
   number: 0
   run_exports:
     - {{ pin_subpackage('stream', max_pin='x.x.x') }}
 
 requirements:
   build:
-    - make
-    - perl
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - {{ stdlib('c') }}
+    - make
+    - perl
   host:
     - epics-base
     - require
