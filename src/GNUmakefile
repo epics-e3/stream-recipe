@@ -89,7 +89,7 @@ HEADERS += $(APPSRC)/StreamBusInterface.h
 HEADERS += $(APPSRC)/StreamCore.h
 HEADERS += $(APPSRC)/MacroMagic.h
 
-LIB_LIBS += pcre
+LIB_LIBS += pcre asyn calc
 
 SCRIPTS += $(wildcard ./iocsh/*.iocsh)
 
