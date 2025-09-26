@@ -27,11 +27,6 @@
 
 include $(E3_REQUIRE_TOOLS)/driver.makefile
 
-<<<<<<< HEAD
-=======
-#USR_CPPFLAGS += -DUSE_TYPED_RSET
-
->>>>>>> 076709a (Updated build configuration for require 6)
 APP:=.
 APPDB:=$(APP)/Db
 APPSRC:=$(APP)/src
@@ -94,11 +89,7 @@ HEADERS += $(APPSRC)/StreamBusInterface.h
 HEADERS += $(APPSRC)/StreamCore.h
 HEADERS += $(APPSRC)/MacroMagic.h
 
-<<<<<<< HEAD
 LIB_LIBS += pcre asyn calc
-=======
-LIB_LIBS += pcre asyn
->>>>>>> 076709a (Updated build configuration for require 6)
 
 SCRIPTS += $(wildcard ./iocsh/*.iocsh)
 
