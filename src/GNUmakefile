@@ -95,12 +95,14 @@ SCRIPTS += $(wildcard ./iocsh/*.iocsh)
 
 StreamCore$(DEP): streamReferences
 
-# Follow E3 build pattern. These lines will pull Version info out of source
-prebuild: $(APPSRC)/StreamVersion.h
+# Build StreamVersion before everything
+$(addsuffix $(DEP),$(notdir $(basename $(SOURCES)))): StreamVersion.h
+# These are a bit special due to the wildcard above
+StreamVersion$(DEP) StreamEpics$(DEP): StreamVersion.h
 
-$(APPSRC)/StreamVersion.h: $(APPSRC)/../.VERSION $(SOURCES) $(filter-out StreamVersion.h, $(HEADERS))
+StreamVersion.h: ../$(APPSRC)/../.VERSION
 	@echo Creating $@
-	perl -CSD $(APPSRC)/makeStreamVersion.pl $@
+	perl -CSD $(where_am_I)$(APPSRC)/makeStreamVersion.pl $@
 
 
 # the original StreamDevice GNUMakefile uses perl
