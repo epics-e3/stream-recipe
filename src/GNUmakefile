@@ -25,12 +25,7 @@
 #
 #
 
-
-where_am_I := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 include $(E3_REQUIRE_TOOLS)/driver.makefile
-
-#USR_CPPFLAGS += -DUSE_TYPED_RSET
-
 
 APP:=.
 APPDB:=$(APP)/Db
@@ -94,18 +89,20 @@ HEADERS += $(APPSRC)/StreamBusInterface.h
 HEADERS += $(APPSRC)/StreamCore.h
 HEADERS += $(APPSRC)/MacroMagic.h
 
-LIB_LIBS += pcre
+LIB_LIBS += pcre asyn calc
 
 SCRIPTS += $(wildcard ./iocsh/*.iocsh)
 
 StreamCore$(DEP): streamReferences
 
-# Follow E3 build pattern. These lines will pull Version info out of source
-prebuild: $(APPSRC)/StreamVersion.h
+# Build StreamVersion before everything
+$(addsuffix $(DEP),$(notdir $(basename $(SOURCES)))): StreamVersion.h
+# These are a bit special due to the wildcard above
+StreamVersion$(DEP) StreamEpics$(DEP): StreamVersion.h
 
-$(APPSRC)/StreamVersion.h: $(APPSRC)/../.VERSION $(SOURCES) $(filter-out StreamVersion.h, $(HEADERS))
+StreamVersion.h: ../$(APPSRC)/../.VERSION
 	@echo Creating $@
-	perl -CSD $(APPSRC)/makeStreamVersion.pl $@
+	perl -CSD $(where_am_I)$(APPSRC)/makeStreamVersion.pl $@
 
 
 # the original StreamDevice GNUMakefile uses perl
@@ -121,8 +118,3 @@ export DBDFILES = streamSup.dbd
 streamSup.dbd:
 	@echo Creating $@
 	$(PERL) $(where_am_I)$(APPSRC)/makedbd.pl $(RECORDTYPES) > $@
-
-
-.PHONY: vlibs
-
-vlibs:
