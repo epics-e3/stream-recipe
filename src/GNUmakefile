@@ -1,29 +1,6 @@
-#
 #  Copyright (c) 2007            Paul Scherrer Institute
 #  Copyright (c) 2017 - Present  European Spallation Source ERIC
 #  Copyright (c) 2019            Jeong Han Lee
-#
-#  The program is free software: you can redistribute
-#  it and/or modify it under the terms of the GNU General Public License
-#  as published by the Free Software Foundation, either version 2 of the
-#  License, or any newer version.
-#
-#  This program is distributed in the hope that it will be useful, but WITHOUT
-#  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-#  FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-#  more details.
-#
-#  You should have received a copy of the GNU General Public License along with
-#  this program. If not, see https://www.gnu.org/licenses/gpl-2.0.txt
-#
-#  PSI original author : Dirk Zimoch
-#
-#  ESS specific author  : Jeong Han Lee
-#               email   : han.lee@esss.se
-#               date    : Thursday, March  7 22:27:55 CET 2019
-#               version : 0.0.3
-#
-#
 
 include $(E3_REQUIRE_TOOLS)/driver.makefile
 
