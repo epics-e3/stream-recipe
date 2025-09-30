@@ -18,14 +18,6 @@ RECORDTYPES += stringout stringin
 RECORDTYPES += waveform
 RECORDTYPES += calcout
 RECORDTYPES += aai aao
-
-ifdef BASE_3_15
-RECORDTYPES += lsi lso
-endif
-ifdef BASE_3_16
-RECORDTYPES += int64in int64out
-endif
-
 RECORDTYPES += scalcout
 
 BUSSES  += Debug
