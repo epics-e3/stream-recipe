@@ -8,7 +8,6 @@ APP:=.
 APPDB:=$(APP)/Db
 APPSRC:=$(APP)/src
 
-### CONFIG_STREAM START
 RECORDTYPES += ao ai
 RECORDTYPES += bo bi
 RECORDTYPES += mbbo mbbi
@@ -34,16 +33,13 @@ FORMATS += MantissaExponent
 FORMATS += Timestamp
 FORMATS += Regexp
 
-### CONFIG_STREAM END
-
-
 ### GNUmakefile
 SOURCES += $(RECORDTYPES:%=src/dev%Stream.c)
 SOURCES += $(FORMATS:%=src/%Converter.cc)
 SOURCES += $(BUSSES:%=src/%Interface.cc)
 SOURCES += $(wildcard src/Stream*.cc)
 
-## E3 Specific
+### e3
 SOURCES += $(APPSRC)/StreamVersion.c
 
 ### GNUmakefile
@@ -58,7 +54,7 @@ HEADERS += $(APPSRC)/StreamBusInterface.h
 HEADERS += $(APPSRC)/StreamCore.h
 HEADERS += $(APPSRC)/MacroMagic.h
 
-LIB_LIBS += pcre asyn calc
+USR_LIBS += pcre asyn calc
 
 SCRIPTS += $(wildcard ./iocsh/*.iocsh)
 
@@ -72,11 +68,6 @@ StreamVersion$(DEP) StreamEpics$(DEP): StreamVersion.h
 StreamVersion.h: ../$(APPSRC)/../.VERSION
 	@echo Creating $@
 	perl -CSD $(where_am_I)$(APPSRC)/makeStreamVersion.pl $@
-
-
-# the original StreamDevice GNUMakefile uses perl
-# I would like to use EPICS PERL instead of perl
-# $PERL = perl -CSD
 
 streamReferences:
 	$(PERL) $(where_am_I)$(APPSRC)/makeref.pl Interface $(BUSSES)   > $@
