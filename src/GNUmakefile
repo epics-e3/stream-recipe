@@ -17,6 +17,8 @@ RECORDTYPES += stringout stringin
 RECORDTYPES += waveform
 RECORDTYPES += calcout
 RECORDTYPES += aai aao
+RECORDTYPES += lsi lso
+RECORDTYPES += int64in int64out
 RECORDTYPES += scalcout
 
 BUSSES  += Debug
