@@ -2,7 +2,7 @@
 
 Home: https://github.com/paulscherrerinstitute/StreamDevice
 
-Package license: EPICS Open License
+Package license: LGPL-3.0
 
 Recipe license: BSD 3-Clause
 
