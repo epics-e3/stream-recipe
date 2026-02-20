@@ -1,0 +1,22 @@
+record(stringin, "$(P)IDN") {
+    field(DTYP, "stream")
+    field(INP,  "@simple.proto get_idn $(PORT)")
+    field(PINI, "YES")
+}
+
+record(ai, "$(P)MEAS") {
+    field(DTYP, "stream")
+    field(INP,  "@simple.proto get_meas $(PORT)")
+    field(SCAN, "1 second")
+}
+
+record(ao, "$(P)SET") {
+    field(DTYP, "stream")
+    field(OUT,  "@simple.proto set_value $(PORT)")
+}
+
+record(ai, "$(P)SP") {
+    field(DTYP, "stream")
+    field(INP,  "@simple.proto get_sp $(PORT)")
+    field(SCAN, "1 second")
+}
