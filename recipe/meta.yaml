@@ -11,7 +11,7 @@ source:
   - path: ../src
 
 build:
-  number: 3
+  number: 4
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x.x') }}
 
@@ -30,10 +30,16 @@ requirements:
     - pcre
 
 test:
+  source_files:
+    - test/
   requires:
     - run-iocsh
+    - lewis
+    - p4p
+    - pytest
   commands:
     - run-iocsh -r {{ name }}
+    - pytest -v test/
 
 about:
   home: https://github.com/paulscherrerinstitute/StreamDevice

@@ -1,0 +1,24 @@
+InTerminator = CR LF;
+OutTerminator = CR LF;
+ReplyTimeout = 1000;
+ReadTimeout = 1000;
+ExtraInput = Ignore;
+
+get_idn {
+    out "*IDN?";
+    in "%39c";
+}
+
+get_meas {
+    out "MEAS?";
+    in "%f";
+}
+
+get_sp {
+    out "SP?";
+    in "%f";
+}
+
+set_value {
+    out "SET %f";
+}

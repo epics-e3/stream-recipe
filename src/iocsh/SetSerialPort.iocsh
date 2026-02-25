@@ -28,7 +28,3 @@ asynSetOption($(PORT_NAME), 0, "stop",    "$(STOP=1)")
 asynSetOption($(PORT_NAME), 0, "parity",  "$(PARITY=none)")
 asynSetOption($(PORT_NAME), 0, "clocal",  "$(CLOCAL=Y)")
 asynSetOption($(PORT_NAME), 0, "crtscts", "$(SRTSCTS=N)")
-
-
-
-
